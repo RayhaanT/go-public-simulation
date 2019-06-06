@@ -14,3 +14,58 @@ input, label {
     font-size: 2rem;
 }
 
+#status {
+    position: absolute;
+    width: auto; height: auto;
+    top: 8px;
+    left: 16px;
+    display: none;
+}
+
+.status {
+    font-size: 3rem;
+}
+
+#options {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-33%, -50%);
+    transform: translate(-33%, -50%);
+    height: 90%; width: 70%;
+    display: none;
+}
+
+.option {
+    width: 49%;
+    height: 49%;
+    font-size: 5rem;
+}
+
+#next {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+.next {
+    padding: 3rem;
+    font-size: 3rem;
+
+}
+
+#choice0 {
+    background-color: #fc223b;
+}
+#choice1 {
+    background-color: #3894df;
+}
+#choice2 {
+    background-color: #fec009;
+}
+#choice3 {
+    background-color: #56b12e;
+}

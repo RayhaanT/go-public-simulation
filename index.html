@@ -28,11 +28,11 @@
 
 <body>
     <div id="initialization">
-        <form action="" method="GET">
+        <form action="" method="GET" onsubmit="hideForm()">
             <label>Salary:</label><br>
-            <input type="number" name="salary" value="0"><br>
+            <input type="number" name="startSalary" value="0"><br>
             <label>Starting Cash</label><br>
-            <input type="number" name="cash" value="0"><br><br>
+            <input type="number" name="startCash" value="0"><br><br>
             <label>Card Colour:</label><br>
             <input type="radio" name="colour" value="white" checked> <label>White</label><br>
             <input type="radio" name="colour" value="pink"> <label>Pink</label><br>
@@ -40,6 +40,27 @@
             <input type="radio" name="colour" value="yellow"> <label>Yellow</label><br><br>
             <input type="submit" value="Begin" onClick="initialize(this.form)">
         </form>
+    </div>
+
+    <div id="status">
+        <label class="status">Cash: </label><label id="cash" class="status">0</label><br>
+        <label class="status">Salary: </label><label id="salary" class="status">0</label><br>
+        <label class="status">AVC: </label><label id="AVC" class="status">0</label><br>
+        <label class="status">Uncle: </label><label id="uncle" class="status">0</label><br>
+        <label class="status">BLA: </label><label id="BLA" class="status">0</label><br>
+        <label class="status">House: </label><label id="house" class="status">0</label><br>
+        <label class="status">Land: </label><label id="land" class="status">0</label><br>
+    </div>
+
+    <div id="options">
+        <button onclick="optionChosen(0)" class="option" id="choice0">Option 1</button>
+        <button onclick="optionChosen(1)" class="option" id="choice1">Option 2</button>
+        <button onclick="optionChosen(2)" class="option" id="choice2">Option 3</button>
+        <button onclick="optionChosen(3)" class="option" id="choice3">Option 4</button>
+    </div>
+
+    <div id="next">
+        <button onclick="nextRound()" class="next">Go to Next Round</button>
     </div>
 </body>
 
