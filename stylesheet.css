@@ -51,10 +51,32 @@ input, label {
     display: none;
 }
 
+#finalButton {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+#finalScore {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
 .next {
     padding: 3rem;
     font-size: 3rem;
+}
 
+.final {
+    padding: 3rem;
+    font-size: 3rem;
 }
 
 #choice0 {
@@ -68,4 +90,8 @@ input, label {
 }
 #choice3 {
     background-color: #56b12e;
+}
+
+.finalLabel {
+    font-size: 3rem;
 }

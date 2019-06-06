@@ -3,12 +3,6 @@ var dataRef = new Firebase('https://go-public-e7abf.firebaseio.com/');
 
 var ref = firebase.database().ref();
 
-ref.on("value", function (snapshot) {
-    console.log(snapshot.val());
-}, function (error) {
-    console.log("Error: " + error.code);
-});
-
 var salary = 0;
 var colour;
 var assets = {
@@ -34,16 +28,28 @@ var landStat = document.getElementById("land")
 
 var name;
 
-const finalValues = [100000, 2500, 5000, 100001, 20] //home, avc, bla, real estate, family business
+const finalValues = [100000, 2500, 5000, 100001, 0] //home, avc, bla, real estate, family business
+
+var round = 0;
+const maxRounds = 10;
+
+const optionsTable = [
+    [ //Round 1
+        ["cash -1000", "stock1 1"], [], []
+    ],
+    [ // Round 2
+        ["stock1 -1", "cash 2000"], [], []
+    ]
+]
 
 function updateStatus() {
     cashStat.innerHTML = assets.cash;
     salaryStat.innerHTML = salary;
-    AVCStat = assets.stock1;
-    BLAStat = assets.stock2;
-    uncleState = assets.familyBusiness;
-    houseState = assets.home;
-    landStat = assets.realEstate;
+    AVCStat.innerHTML = assets.stock1;
+    BLAStat.innerHTML = assets.stock2;
+    uncleStat.innerHTML = assets.familyBusiness;
+    houseStat.innerHTML = assets.home;
+    landStat.innerHTML = assets.realEstate;
 }
 
 function initialize(form) {
@@ -59,14 +65,33 @@ function initialize(form) {
     }
 }
 
-function optionChosen(id) {
-    optionsDiv.style.display = "none";
-    nextDiv.style.display = "block";
-    updateStatus();
-    
-    if(id == 4) {
+function optionChosen(id) {    
+    if(id == 3) {
+        updateStatus();
+        optionsDiv.style.display = "none";
+        nextDiv.style.display = "block";
         return;
     }
+    var chosenOption = optionsTable[round][id];
+
+    for(i = 0; i < chosenOption.length; i++) {
+        let splitElement = chosenOption[i].split(" ")
+        if(splitElement[1] < 0 && assets[splitElement[0]] < Math.abs(splitElement[1])) {
+            alert("Transaction impossible")
+            updateStatus();
+            return;
+        }
+    }
+
+    for(i = 0; i < chosenOption.length; i++) {
+        let splitElement = chosenOption[i].split(" ")
+        assets[splitElement[0]] += parseInt(splitElement[1]);
+        console.log(assets);
+    }
+
+    updateStatus();
+    optionsDiv.style.display = "none";
+    nextDiv.style.display = "block";
 }
 
 function hideForm() {
@@ -84,6 +109,10 @@ function nextRound() {
     optionsDiv.style.display = "block";
     nextDiv.style.display = "none";
     updateStatus();
+    round++;
+    if(round >= maxRounds) {
+        nextDiv = document.getElementById("finalButton")
+    }
 }
 
 /*var playersRef = ref.child("players");
@@ -101,5 +130,15 @@ playersRef.push({
 
 function finalize() {
     var finalScore = assets.cash + assets.home * finalValues[0] + assets.stock1 * finalValues[1] + assets.stock2 * finalValues[2] + assets.realEstate * finalValues[3] + assets.familyBusiness * finalValues[4];
+    playersRef.set({
+        [name]: {
+            score: finalScore,
+            colour: colour
+        }
+    })
 
+    nextDiv.style.display = "none";
+    var finalScreen = document.getElementById("finalScore");
+    finalScreen.style.display = "block";
+    finalScreen.innerHTML = "You final value was: " + finalScore;
 }
