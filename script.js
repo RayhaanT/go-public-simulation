@@ -140,5 +140,5 @@ function finalize() {
     nextDiv.style.display = "none";
     var finalScreen = document.getElementById("finalScore");
     finalScreen.style.display = "block";
-    finalScreen.innerHTML = "You final value was: " + finalScore;
+    document.getElementById("finalLabel").innerHTML = "You final value was: " + finalScore;
 }
