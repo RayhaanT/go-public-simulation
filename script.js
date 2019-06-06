@@ -9,7 +9,6 @@ ref.on("value", function (snapshot) {
     console.log("Error: " + error.code);
 });
 
-
 var salary = 0;
 var colour;
 var assets = {
@@ -33,7 +32,9 @@ var uncleStat = document.getElementById("uncle")
 var houseStat = document.getElementById("house")
 var landStat = document.getElementById("land")
 
-const finalValues = [100000, 2500, 5000, 100001, 20]
+var name;
+
+const finalValues = [100000, 2500, 5000, 100001, 20] //home, avc, bla, real estate, family business
 
 function updateStatus() {
     cashStat.innerHTML = assets.cash;
@@ -48,6 +49,7 @@ function updateStatus() {
 function initialize(form) {
     salary = parseInt(form.startSalary.value);
     assets.cash = parseInt(form.startCash.value);
+    name = form.name.value;
 
     for(i = 0; i < 4; i++) {
         if (form.colour[i].checked) {
@@ -60,6 +62,7 @@ function initialize(form) {
 function optionChosen(id) {
     optionsDiv.style.display = "none";
     nextDiv.style.display = "block";
+    updateStatus();
     
     if(id == 4) {
         return;
@@ -80,6 +83,7 @@ function nextRound() {
     assets.cash += salary;
     optionsDiv.style.display = "block";
     nextDiv.style.display = "none";
+    updateStatus();
 }
 
 /*var playersRef = ref.child("players");
@@ -96,5 +100,6 @@ playersRef.push({
 });*/
 
 function finalize() {
+    var finalScore = assets.cash + assets.home * finalValues[0] + assets.stock1 * finalValues[1] + assets.stock2 * finalValues[2] + assets.realEstate * finalValues[3] + assets.familyBusiness * finalValues[4];
 
 }
