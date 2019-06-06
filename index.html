@@ -5,9 +5,10 @@
     <meta charset="utf-8">
     <title>Go Public</title>
     <link type="text/css" rel="stylesheet" href="./stylesheet.css">
-    <script type="text/javascript" src="./script.js" async defer></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
     <script>
         // Your web app's Firebase configuration
         var firebaseConfig = {
@@ -22,20 +23,22 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
     </script>
+    <script type="text/javascript" src="./script.js" async defer></script>
 </head>
 
 <body>
     <div id="initialization">
-        <form action="/action_page.php">
-            Salary:<br>
-            <input type="text" name="firstname" value="0"><br>
-            Starting Cash:<br>
-            <input type="text" name="lastname" value="0"><br><br>
-            Card Colour:<br>
-            <input type="radio" name="gender" value="male" checked> Male<br>
-            <input type="radio" name="gender" value="female"> Female<br>
-            <input type="radio" name="gender" value="other"> Other<br><br>
-            <input type="submit" value="Submit">
+        <form action="" method="GET">
+            <label>Salary:</label><br>
+            <input type="number" name="salary" value="0"><br>
+            <label>Starting Cash</label><br>
+            <input type="number" name="cash" value="0"><br><br>
+            <label>Card Colour:</label><br>
+            <input type="radio" name="colour" value="white" checked> <label>White</label><br>
+            <input type="radio" name="colour" value="pink"> <label>Pink</label><br>
+            <input type="radio" name="colour" value="green"> <label>Green</label><br>
+            <input type="radio" name="colour" value="yellow"> <label>Yellow</label><br><br>
+            <input type="submit" value="Begin" onClick="initialize(this.form)">
         </form>
     </div>
 </body>
