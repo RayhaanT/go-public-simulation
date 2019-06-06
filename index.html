@@ -7,9 +7,23 @@
     <link type="text/css" rel="stylesheet" href="./stylesheet.css">
     <script type="text/javascript" src="./script.js" async defer></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
 </head>
 
 <body>
+    <div id="initialization">
+        <form action="/action_page.php">
+            Salary:<br>
+            <input type="text" name="firstname" value="0"><br>
+            Starting Cash:<br>
+            <input type="text" name="lastname" value="0"><br><br>
+            Card Colour:<br>
+            <input type="radio" name="gender" value="male" checked> Male<br>
+            <input type="radio" name="gender" value="female"> Female<br>
+            <input type="radio" name="gender" value="other"> Other<br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
 </body>
 
 </html>
