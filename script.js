@@ -28,10 +28,10 @@ var landStat = document.getElementById("land")
 
 var name;
 
-const finalValues = [100000, 2500, 5000, 100001, 0] //home, avc, bla, real estate, family business
+const finalValues = [120000, 12000, 45000, 110000, 1000] //home, avc, bla, real estate, family business
 
 var round = 0;
-const maxRounds = 10;
+const maxRounds = 9;
 
 const optionsTable = [
     [ //Round 1
@@ -39,6 +39,27 @@ const optionsTable = [
     ],
     [ // Round 2
         ["stock1 -1", "cash 2000"], [], []
+    ],
+    [ //Round 3
+        ["cash -500", "salary 100"], ["cash -12000", "salary 6000"], ["cash -25000", "salary 8000"] 
+    ],
+    [ //Round 4
+        ["cash -2000", "familyBusiness 1"], ["cash -15000", "stock2 1"], ["cash -30000", "stock2 2"]
+    ],
+    [ //Round 5
+        ["cash 25000", "stock2 -1"], ["cash -75000", "stock2 3"], ["cash -4000", "salary 200"]
+    ],
+    [ //Round 6
+        ["cash 2000", "salary -300"], ["cash -10000", "stock1 1"], ["cash -12000", "salary 4000"]
+    ],
+    [ //Round 7
+        ["cash -3000", "familyBusiness 1"], ["cash -75000", "home 1"], []
+    ],
+    [ //Round 8
+        ["cash -100000", "realEstate 1"], [], []
+    ],
+    [ //Round 9
+        ["cash -110000", "realEstate 1"], ["cash -80000", "stock2 2"], ["cash -80000", "home 1"]
     ]
 ]
 
@@ -84,6 +105,14 @@ function optionChosen(id) {
 
     for(i = 0; i < chosenOption.length; i++) {
         let splitElement = chosenOption[i].split(" ")
+        if(splitElement[0] == "salary") {
+            if (splitElement[1] < 0 && salary < Math.abs(splitElement[1])) {
+                alert("Transaction impossible")
+                updateStatus();
+                return;
+            }
+            continue
+        }
         if(splitElement[1] < 0 && assets[splitElement[0]] < Math.abs(splitElement[1])) {
             alert("Transaction impossible")
             updateStatus();
@@ -93,6 +122,10 @@ function optionChosen(id) {
 
     for(i = 0; i < chosenOption.length; i++) {
         let splitElement = chosenOption[i].split(" ")
+        if (splitElement[0] == "salary") {
+            salary += parseInt(splitElement[1]);
+            continue
+        }
         assets[splitElement[0]] += parseInt(splitElement[1]);
         console.log(assets);
     }
@@ -116,7 +149,7 @@ function nextRound() {
     nextDiv.style.display = "none";
     updateStatus();
     round++;
-    if(round >= maxRounds) {
+    if(round >= maxRounds - 1) {
         nextDiv = document.getElementById("finalButton")
     }
 }
