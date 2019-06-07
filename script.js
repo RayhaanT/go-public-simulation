@@ -47,7 +47,7 @@ const optionsTable = [
         ["cash -2000", "familyBusiness 1"], ["cash -15000", "stock2 1"], ["cash -30000", "stock2 2"]
     ],
     [ //Round 5
-        ["cash 25000", "stock2 -1"], ["cash -75000", "stock2 3"], ["cash -4000", "salary 200"]
+        ["cash 25000", "stock2 -1"], ["cash -75000", "stock2 3"], ["cash -4000", "salary 4000"]
     ],
     [ //Round 6
         ["cash 2000", "salary -300"], ["cash -10000", "stock1 1"], ["cash -12000", "salary 4000"]
