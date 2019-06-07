@@ -57,12 +57,20 @@ function initialize(form) {
     assets.cash = parseInt(form.startCash.value);
     name = form.name.value;
 
+    if(assets.cash == -1 && salary == -1) {
+        showLeaderboard();
+        return;
+    }
+
     for(i = 0; i < 4; i++) {
         if (form.colour[i].checked) {
             colour = form.colour[i].value;
             break;
         }
     }
+
+    optionsDiv.style.display = "block";
+    statusDiv.style.display = "block";
 }
 
 function optionChosen(id) {    
@@ -99,8 +107,6 @@ function hideForm() {
     var hideDiv = document.getElementById("initialization")
     hideDiv.style.display = "none";
     //assets.cash += salary;
-    optionsDiv.style.display = "block";
-    statusDiv.style.display = "block";
     updateStatus();
 }
 
@@ -130,15 +136,57 @@ playersRef.push({
 
 function finalize() {
     var finalScore = assets.cash + assets.home * finalValues[0] + assets.stock1 * finalValues[1] + assets.stock2 * finalValues[2] + assets.realEstate * finalValues[3] + assets.familyBusiness * finalValues[4];
-    playersRef.set({
-        [name]: {
-            score: finalScore,
-            colour: colour
-        }
+    let subRef = dataRef.child("players")
+    
+    playersRef.push({
+        name: name,
+        score: finalScore,
+        colour: colour
     })
 
     nextDiv.style.display = "none";
     var finalScreen = document.getElementById("finalScore");
     finalScreen.style.display = "block";
     document.getElementById("finalLabel").innerHTML = "You final value was: " + finalScore;
+}
+
+
+function showLeaderboard() {
+    optionsDiv.style.display = "none";
+    statusDiv.style.display = "none";
+    var results = document.getElementById("results")
+    results.style.display = "block";
+
+    var players = [];
+
+    playersRef.orderByChild("score").on("child_added", function (data) {
+        var newBox = document.createElement('div');
+        results.appendChild(newBox);
+        newBox.className = "row"
+        var newName = document.createElement('div');
+        newName.className = "subBox";
+        newName.innerHTML = data.val().name;
+        var newScore = document.createElement('div');
+        newScore.className = "subBox";
+        newScore.innerHTML = data.val().score;
+        newBox.style.backgroundColor = data.val().colour;
+        newBox.appendChild(newName);
+        newBox.appendChild(newScore);
+    });
+
+    /*for(i = players.length - 1; i > -1; i--) {
+        console.log(000)
+        var newBox = document.createElement('div');
+        results.appendChild(newBox);
+        newBox.className = "results"
+        var newName = document.createElement('div');
+        newName.className = "subBox";
+        newName.innerHTML = players[i].name;
+        var newScore = document.createElement('div');
+        newScore.className = "subBox";
+        newScore.innerHTML = players[i].score;
+        newBox.style.backgroundColor = players[i].colour;
+        newBox.appendChild(newName);
+        newBox.appendChild(newScore);
+    }*/
 }
