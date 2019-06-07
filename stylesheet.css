@@ -96,23 +96,21 @@ h1 {
     font-size: 3rem;
 }
 
-.results {
-    width: 80%;
+div.results {
+    width: 100%;
     height: auto;
     border-style: solid;
     border-width: 3px;
     margin: auto;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+position: relative; left: 50%;
+transform: translateX(-50%);
     display: none;
+    overflow-y: scroll;
 }
 
 .subBox {
     width: 50%;
-    height: 50px;
+    height: 40px;
     margin: 0px;
     text-align: center;
     position: relative;
@@ -125,5 +123,5 @@ h1 {
 }
 
 .row {
-    height: 50px;
+    height: 40px;
 }

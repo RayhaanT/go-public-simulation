@@ -173,7 +173,7 @@ function showLeaderboard() {
         newBox.appendChild(newName);
         newBox.appendChild(newScore);
     });
-
+    
     /*for(i = players.length - 1; i > -1; i--) {
         console.log(000)
         var newBox = document.createElement('div');
