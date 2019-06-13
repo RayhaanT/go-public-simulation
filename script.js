@@ -154,19 +154,6 @@ function nextRound() {
     }
 }
 
-/*var playersRef = ref.child("players");
-playersRef.push({
-    name: "John",
-    number: 1,
-    age: 30
-});
-
-playersRef.push({
-    name: "Amanda",
-    number: 2,
-    age: 20
-});*/
-
 function finalize() {
     var finalScore = assets.cash + assets.home * finalValues[0] + assets.stock1 * finalValues[1] + assets.stock2 * finalValues[2] + assets.realEstate * finalValues[3] + assets.familyBusiness * finalValues[4];
     let subRef = dataRef.child("players")
@@ -182,7 +169,6 @@ function finalize() {
     finalScreen.style.display = "block";
     document.getElementById("finalLabel").innerHTML = "You final value was: " + finalScore;
 }
-
 
 function showLeaderboard() {
     optionsDiv.style.display = "none";
